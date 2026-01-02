@@ -21,7 +21,8 @@ internal class DriverRepository : IDriverRepository
 
     public async Task<Driver?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _context.Drivers.FindAsync([id], cancellationToken);
+        var driver = await _context.Drivers.FindAsync([id], cancellationToken);
+        return driver ?? null;
     }
 
     public async Task AddDriverAsync(Driver driver, CancellationToken cancellationToken)
@@ -35,6 +36,20 @@ internal class DriverRepository : IDriverRepository
         if (driver != null)
         {
             _context.Drivers.Remove(driver);
+        }
+    }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task UpdateDriverAsync(Driver driver, CancellationToken cancellationToken)
+    {
+        var driverToUpdate = await _context.Drivers.FindAsync([driver.Id], cancellationToken);
+        if (driverToUpdate is not null)
+        {
+            driverToUpdate.UpdateDriver(driver);
         }
     }
 }

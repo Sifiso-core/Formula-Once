@@ -34,22 +34,34 @@ internal class Driver
 
     public Stats CareerStats { get; private set; } = null!;
 
+    public Driver UpdateDriver(Driver driver)
+    {
+        Name = Guard.Against.NullOrEmpty(driver.Name, nameof(driver.Name));
+        ConstructorId = Guard.Against.Default(driver.ConstructorId, nameof(driver.ConstructorId));
+        CareerStats = driver.CareerStats;
+        Nationality = Guard.Against.NullOrEmpty(driver.Nationality, nameof(driver.Nationality));
+        Surname = Guard.Against.NullOrEmpty(driver.Surname, nameof(driver.Surname));
+        RacingNumber = Guard.Against.NegativeOrZero(driver.RacingNumber, nameof(driver.RacingNumber));
+        CareerStats = driver.CareerStats;
+        Acronym = Guard.Against.NullOrEmpty(driver.Acronym, nameof(driver.Acronym));
+        return driver;
+    }
+
     public class Factory
     {
         public static Driver Create(string name, string surname, string nationality, Guid constructorId,
-            int racingNumber, DateTime dateOfBirth, string? acryonym)
+            int racingNumber, DateTime dateOfBirth, string? acronym, Guid? id = null!)
         {
             return new Driver()
             {
-                Id = Guid.NewGuid(),
+                Id = id ?? Guid.NewGuid(),
                 Name = Guard.Against.NullOrEmpty(name, nameof(name)),
                 Surname = Guard.Against.NullOrEmpty(surname, nameof(surname)),
                 Nationality = Guard.Against.NullOrEmpty(nationality, nameof(nationality)),
                 ConstructorId = Guard.Against.Default(constructorId, nameof(constructorId)),
                 RacingNumber = Guard.Against.NegativeOrZero(racingNumber, nameof(racingNumber)),
-                DateOfBirth = Guard.Against.Default(dateOfBirth, nameof(dateOfBirth)),
                 CareerStats = new Stats(0, 0, 0, 0, 0),
-                Acronym = acryonym ?? surname[0..3].ToUpper()
+                Acronym = acronym ?? surname[0..3].ToUpper()
             };
         }
     }

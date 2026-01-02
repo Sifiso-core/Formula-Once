@@ -8,4 +8,6 @@ internal interface IDriverService
     Task<DriverDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     Task AddDriverAsync(DriverDto driver, CancellationToken cancellationToken);
     Task DeleteDriverAsync(Guid id, CancellationToken cancellationToken);
+    Task SaveChangesAsync(CancellationToken cancellationToken);
+    Task UpdateDriverAsync(DriverDto driverDto, CancellationToken cancellationToken);
 }

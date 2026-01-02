@@ -2,9 +2,9 @@
 using FormulaOnce.Teams.Infrastructure.Data;
 using FormulaOnce.Teams.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using ILogger = Serilog.ILogger;
 
 namespace FormulaOnce.Teams;
@@ -19,7 +19,11 @@ public static class FormulaOnceTeamsExtensions
             var connectionString = configurationManager.GetConnectionString("TeamsDatabase") ??
                                    throw new InvalidOperationException(
                                        "Connection string for the Teams module is not Configured.");
-            options.UseSqlServer(configurationManager.GetConnectionString(connectionString));
+
+            options.UseSqlServer(connectionString,
+                sqlserverOptions =>
+                    sqlserverOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName,
+                        DbConstants.TeamSchema));
         });
 
         services.AddScoped<IDriverRepository, DriverRepository>();

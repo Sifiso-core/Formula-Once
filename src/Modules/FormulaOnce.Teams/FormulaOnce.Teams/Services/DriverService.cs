@@ -34,7 +34,7 @@ internal class DriverService : IDriverService
         var lastName = names.Length > 1 ? names[1] : string.Empty;
 
         var driver = Driver.Factory.Create(firstName, lastName, driverDto.Nationality, driverDto.ConstructorId,
-            driverDto.RacingNumber, driverDto.DateOfBirth, driverDto.Acronym);
+            driverDto.RacingNumber, driverDto.DateOfBirth, driverDto.Acronym, driverDto.Id);
 
         await _driverRepository.AddDriverAsync(driver, cancellationToken);
     }
@@ -42,5 +42,19 @@ internal class DriverService : IDriverService
     public async Task DeleteDriverAsync(Guid id, CancellationToken cancellationToken)
     {
         await _driverRepository.DeleteDriverAsync(id, cancellationToken);
+    }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        await _driverRepository.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task UpdateDriverAsync(DriverDto driverDto, CancellationToken cancellationToken)
+    {
+        var driver = await GetByIdAsync(driverDto.Id, cancellationToken);
+        if (driver is not null)
+        {
+            await _driverRepository.UpdateDriverAsync(driverDto.AsEntity(), cancellationToken);
+        }
     }
 }
