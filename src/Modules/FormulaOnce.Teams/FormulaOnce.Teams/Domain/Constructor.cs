@@ -1,6 +1,6 @@
 ﻿namespace FormulaOnce.Teams.Domain;
 
-public class Constructor
+internal class Constructor
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
