@@ -1,3 +1,4 @@
+using FastEndpoints;
 using FormulaOnce.Teams;
 using Serilog;
 
@@ -11,6 +12,8 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddFastEndpoints();
+
 builder.Services.AddFormulaOnceTeams(builder.Configuration, logger);
 
 var app = builder.Build();
@@ -21,5 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseFastEndpoints(options => { options.Errors.UseProblemDetails(); });
 
 app.Run();
