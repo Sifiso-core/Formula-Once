@@ -5,6 +5,7 @@
   </Folder>
   <Folder Name="/src/Modules/" />
   <Folder Name="/src/Modules/FormulaOnce.Teams/">
+    <Project Path="src/Modules/FormulaOnce.Teams/FormulaOnce.Teams.Tests/FormulaOnce.Teams.Tests.csproj" />
     <Project Path="src/Modules/FormulaOnce.Teams/FormulaOnce.Teams/FormulaOnce.Teams.csproj" />
   </Folder>
 </Solution>
