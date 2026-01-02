@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Host/">
+    <Project Path="src/Host/FormulaOnce.Api/FormulaOnce.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/FormulaOnce.Teams/">
+    <Project Path="src/Modules/FormulaOnce.Teams/FormulaOnce.Teams/FormulaOnce.Teams.csproj" />
+  </Folder>
+</Solution>
