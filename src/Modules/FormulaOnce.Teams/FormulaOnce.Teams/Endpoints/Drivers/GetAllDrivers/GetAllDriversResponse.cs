@@ -1,8 +1,8 @@
-﻿using FormulaOnce.Teams.Domain;
+﻿using FormulaOnce.Teams.Endpoints.Drivers._Dtos;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.GetAllDrivers;
 
 internal class GetAllDriversResponse
 {
-    public List<DriverDto> Drivers { get; set; } = [];
+    public required List<DriverDto> Drivers { get; set; } = [];
 }

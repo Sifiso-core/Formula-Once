@@ -1,6 +1,5 @@
 ﻿using FastEndpoints;
-using FormulaOnce.Teams.Services;
-
+using FormulaOnce.Teams.Services.DriverServices;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.GetAllDrivers;
 
@@ -21,11 +20,11 @@ internal class GetAllDrivers : EndpointWithoutRequest<GetAllDriversResponse>
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var drivers = await _driverService.GetAllAsync(ct);
+        var result = await _driverService.GetAllAsync(ct);
 
-        var response = new GetAllDriversResponse()
+        var response = new GetAllDriversResponse
         {
-            Drivers = drivers
+            Drivers = result.Value // result.Value is the List<DriverDto>
         };
 
         await Send.OkAsync(response, ct);

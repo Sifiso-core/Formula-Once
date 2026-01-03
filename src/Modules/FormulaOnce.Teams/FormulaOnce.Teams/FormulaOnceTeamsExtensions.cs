@@ -1,6 +1,8 @@
-﻿using FormulaOnce.Teams.Infrastructure;
+﻿using FormulaOnce.Teams.Infrastructure.ConstructorRepository;
 using FormulaOnce.Teams.Infrastructure.Data;
-using FormulaOnce.Teams.Services;
+using FormulaOnce.Teams.Infrastructure.DriverRepository;
+using FormulaOnce.Teams.Services.ConstructorServices;
+using FormulaOnce.Teams.Services.DriverServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,10 @@ public static class FormulaOnceTeamsExtensions
         services.AddScoped<IDriverRepository, DriverRepository>();
 
         services.AddScoped<IDriverService, DriverService>();
+
+        services.AddScoped<IConstructorRepository, ConstructorRepository>();
+
+        services.AddScoped<IConstructorService, ConstructorService>();
 
         logger.Information("::{module} module services registered", "Teams");
 

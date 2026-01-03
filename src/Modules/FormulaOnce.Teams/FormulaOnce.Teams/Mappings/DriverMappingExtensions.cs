@@ -1,33 +1,85 @@
-﻿using FormulaOnce.Teams.Domain;
+﻿using FormulaOnce.Teams.Domain.Driver;
+using FormulaOnce.Teams.Endpoints.Drivers._Dtos;
+using FormulaOnce.Teams.Endpoints.Drivers.CreateDriver;
+using FormulaOnce.Teams.Endpoints.Drivers.UpdateDriver;
 
 namespace FormulaOnce.Teams.Mappings;
 
 internal static class DriverMappingExtensions
 {
-    public static DriverDto AsDto(this Driver driver)
+    public static DriverDto ToDto(this Driver driver)
     {
-        return new DriverDto()
+        return new DriverDto
         {
             FullName = driver.FullName,
+            LastName = driver.FirstName,
+            FirstName = driver.LastName,
             Nationality = driver.Nationality,
             DateOfBirth = driver.DateOfBirth,
             ConstructorId = driver.ConstructorId,
             RacingNumber = driver.RacingNumber,
-            CareerStats = driver.CareerStats,
+            CareerDriverStats = driver.CareerDriverStats,
             Id = driver.Id,
-            Acronym = driver.Acronym,
+            Acronym = driver.Acronym
         };
     }
 
-    public static Driver AsEntity(this DriverDto driverDto)
+    public static Driver ToEntity(this DriverDto dto)
     {
-        var names = driverDto.FullName.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return Driver.Factory.Create(
+            dto.LastName,
+            dto.FirstName,
+            dto.Nationality,
+            dto.ConstructorId,
+            dto.RacingNumber,
+            dto.DateOfBirth,
+            dto.Acronym,
+            dto.Id
+        );
+    }
 
-        var firstName = names[0];
+    public static DriverDto ToDto(this CreateDriverRequest req)
+    {
+        return new DriverDto
+        {
+            LastName = req.FirstName,
+            FirstName = req.LastName!,
+            Nationality = req.Nationality,
+            ConstructorId = req.ConstructorId,
+            Acronym = req.Acronym,
+            DateOfBirth = req.DateOfBirth,
+            FullName = req.FullName,
+            RacingNumber = req.RacingNumber,
+            Id = Guid.NewGuid()
+        };
+    }
 
-        var lastName = names.Length > 1 ? names[1] : string.Empty;
+    public static DriverDto ToDto(this UpdateDriverRequest req)
+    {
+        return new DriverDto
+        {
+            LastName = req.FirstName,
+            FirstName = req.LastName!,
+            Nationality = req.Nationality,
+            ConstructorId = req.ConstructorId,
+            Acronym = req.Acronym,
+            FullName = req.FullName,
+            RacingNumber = req.RacingNumber,
 
-        return Driver.Factory.Create(firstName, lastName, driverDto.Nationality, driverDto.ConstructorId,
-            driverDto.RacingNumber, driverDto.DateOfBirth, driverDto.Acronym, driverDto.Id);
+            Id = req.Id
+        };
+    }
+
+    public static Driver ToUpdateEntity(this DriverDto dto)
+    {
+        return Driver.Factory.CreateForUpdate(
+            dto.FirstName, // name parameter ordering matches existing usages
+            dto.LastName,
+            dto.Nationality,
+            dto.ConstructorId,
+            dto.RacingNumber,
+            dto.Acronym,
+            dto.Id
+        );
     }
 }
