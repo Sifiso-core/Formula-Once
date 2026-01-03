@@ -1,6 +1,7 @@
-﻿using FastEndpoints;
-using FormulaOnce.Teams.Domain;
-using FormulaOnce.Teams.Services;
+﻿using Ardalis.Result;
+using FastEndpoints;
+using FormulaOnce.Teams.Mappings;
+using FormulaOnce.Teams.Services.DriverServices;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.UpdateDriver;
 
@@ -21,26 +22,13 @@ internal class UpdateDriver : Endpoint<UpdateDriverRequest>
 
     public override async Task HandleAsync(UpdateDriverRequest req, CancellationToken ct)
     {
-        var driverToUpdate = await _driverService.GetByIdAsync(req.Id, ct);
+        var result = await _driverService.UpdateDriverAsync(req.ToDto(), ct);
 
-        if (driverToUpdate is null)
+        if (result.Status == ResultStatus.NotFound)
         {
             await Send.NotFoundAsync(ct);
             return;
         }
-
-        var driverDto = new DriverDto()
-        {
-            Id = req.Id,
-            Acronym = req.Acronym,
-            RacingNumber = req.RacingNumber,
-            Nationality = req.Nationality,
-            ConstructorId = req.ConstructorId,
-            FullName = req.FullName
-        };
-        await _driverService.UpdateDriverAsync(driverDto, ct);
-
-        await _driverService.SaveChangesAsync(ct);
 
         await Send.NoContentAsync(ct);
     }

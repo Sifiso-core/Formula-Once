@@ -1,6 +1,9 @@
-﻿using FastEndpoints;
-using FormulaOnce.Teams.Domain;
-using FormulaOnce.Teams.Services;
+﻿using Ardalis.Result;
+using FastEndpoints;
+using FormulaOnce.Teams.Endpoints.Drivers._Dtos;
+using FormulaOnce.Teams.Mappings;
+using FormulaOnce.Teams.Services.DriverServices;
+using Microsoft.AspNetCore.Http;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.CreateDriver;
 
@@ -21,22 +24,24 @@ internal class CreateDriver : Endpoint<CreateDriverRequest, DriverDto>
 
     public override async Task HandleAsync(CreateDriverRequest req, CancellationToken ct)
     {
-        var driverDto = new DriverDto()
+        var result = await _driverService.AddDriverAsync(req.ToDto(), ct);
+
+        if (result.IsSuccess)
         {
-            Acronym = req.Acronym,
-            RacingNumber = req.RacingNumber,
-            ConstructorId = req.ConstructorId,
-            Nationality = req.Nationality,
-            FullName = req.FullName,
-            DateOfBirth = req.DateOfBirth,
-            Id = Guid.NewGuid(),
-            CareerStats = new Stats(0, 0, 0, 0, 0),
-        };
+            await Send.CreatedAtAsync<GetDriverById.GetDriverById>(
+                new { result.Value.Id },
+                result.Value,
+                cancellation: ct);
+            return;
+        }
 
-        await _driverService.AddDriverAsync(driverDto, ct);
+        if (result.Status == ResultStatus.Invalid)
+        {
+            foreach (var error in result.ValidationErrors) AddError(error.ErrorMessage);
+            await Send.ErrorsAsync(StatusCodes.Status400BadRequest, ct);
+            return;
+        }
 
-        await _driverService.SaveChangesAsync(ct);
-
-        await Send.CreatedAtAsync<GetDriverById.GetDriverById>(new { Id = driverDto.Id }, driverDto, cancellation: ct);
+        if (result.Status == ResultStatus.NotFound) await Send.NotFoundAsync(ct);
     }
 }

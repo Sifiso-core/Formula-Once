@@ -1,10 +1,13 @@
-﻿namespace FormulaOnce.Teams.Domain;
+﻿using FormulaOnce.Teams.Domain.Driver;
+
+namespace FormulaOnce.Teams.Endpoints.Drivers._Dtos;
 
 public class DriverDto
 {
     public Guid Id { get; set; }
     public string FullName { get; set; } = string.Empty;
-
+    public string LastName { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
     public string Acronym { get; set; } = string.Empty;
     public int RacingNumber { get; set; }
 
@@ -23,5 +26,5 @@ public class DriverDto
         }
     }
 
-    public Stats CareerStats { get; set; } = null!;
+    public DriverStats CareerDriverStats { get; set; } = null!;
 }

@@ -1,5 +1,5 @@
 ﻿using FastEndpoints;
-using FormulaOnce.Teams.Services;
+using FormulaOnce.Teams.Services.DriverServices;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.GetDriverById;
 
@@ -20,13 +20,14 @@ internal class GetDriverById : Endpoint<GetDriverByIdRequest>
 
     public override async Task HandleAsync(GetDriverByIdRequest req, CancellationToken ct)
     {
-        var driver = await _driverService.GetByIdAsync(req.Id, ct);
-        if (driver is null)
+        var result = await _driverService.GetByIdAsync(req.Id, ct);
+
+        if (!result.IsSuccess)
         {
             await Send.NotFoundAsync(ct);
             return;
         }
 
-        await Send.OkAsync(driver, ct);
+        await Send.OkAsync(result.Value, ct);
     }
 }

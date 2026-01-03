@@ -1,5 +1,6 @@
-﻿using FastEndpoints;
-using FormulaOnce.Teams.Services;
+﻿using Ardalis.Result;
+using FastEndpoints;
+using FormulaOnce.Teams.Services.DriverServices;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.DeleteDriver;
 
@@ -20,17 +21,13 @@ internal class DeleteDriver : Endpoint<DeleteDriverRequest>
 
     public override async Task HandleAsync(DeleteDriverRequest req, CancellationToken ct)
     {
-        var driver = await _driverService.GetByIdAsync(req.Id, ct);
+        var result = await _driverService.DeleteDriverAsync(req.Id, ct);
 
-        if (driver is null)
+        if (result.Status == ResultStatus.NotFound)
         {
             await Send.NotFoundAsync(ct);
             return;
         }
-
-        await _driverService.DeleteDriverAsync(req.Id, ct);
-
-        await _driverService.SaveChangesAsync(ct);
 
         await Send.NoContentAsync(ct);
     }
