@@ -14,7 +14,7 @@ internal class GetAllConstructors : Endpoint<GetAllConstructorResponse>
 
     public override void Configure()
     {
-        Get("/constructors");
+        Get("/teams/constructors");
         AllowAnonymous();
     }
 

@@ -15,7 +15,7 @@ internal class DeleteConstructor : Endpoint<DeleteConstructorRequest>
 
     public override void Configure()
     {
-        Delete("constructors/{Id:guid}");
+        Delete("/teams/constructors/{Id:guid}");
         AllowAnonymous();
     }
 

@@ -14,7 +14,7 @@ internal class GetAllDrivers : EndpointWithoutRequest<GetAllDriversResponse>
 
     public override void Configure()
     {
-        Get("/drivers");
+        Get("/teams/drivers");
         AllowAnonymous();
     }
 

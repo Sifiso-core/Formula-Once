@@ -16,7 +16,7 @@ internal class UpdateDriver : Endpoint<UpdateDriverRequest>
 
     public override void Configure()
     {
-        Put("/drivers/{Id}");
+        Put("/teams/drivers/{Id}");
         AllowAnonymous();
     }
 

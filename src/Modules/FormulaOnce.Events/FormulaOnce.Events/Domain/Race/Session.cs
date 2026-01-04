@@ -2,11 +2,6 @@
 
 public class Session
 {
-    public Guid Id { get; private set; }
-    public Guid RaceId { get; private set; }
-    public DateTime ScheduledStart { get; private set; }
-    public SessionType SessionType { get; private set; }
-
     private Session()
     {
     }
@@ -18,4 +13,9 @@ public class Session
         ScheduledStart = scheduledStart;
         SessionType = sessionType;
     }
+
+    public Guid Id { get; private set; }
+    public Guid RaceId { get; private set; }
+    public DateTime ScheduledStart { get; private set; }
+    public SessionType SessionType { get; private set; }
 }

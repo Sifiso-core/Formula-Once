@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
-using FormulaOnce.Teams.Endpoints.Constructors._Dtos;
 using FormulaOnce.Teams.Infrastructure.ConstructorRepository;
 using FormulaOnce.Teams.Mappings;
+using FormulaOnce.Teams.Services.ConstructorServices.Dto;
 
 namespace FormulaOnce.Teams.Services.ConstructorServices;
 
@@ -42,11 +42,10 @@ internal class ConstructorService : IConstructorService
 
     public async Task<Result> UpdateConstructorAsync(ConstructorDto dto, CancellationToken ct = default)
     {
-        
         var exists = await _repository.GetConstructorByIdAsync(dto.Id, ct);
         if (exists is null) return Result.NotFound();
 
-        
+
         await _repository.UpdateConstructorAsync(dto.ToEntity(), ct);
         await _repository.SaveChangesAsync(ct);
 
@@ -55,13 +54,9 @@ internal class ConstructorService : IConstructorService
 
     public async Task<Result> DeleteConstructorAsync(Guid id, CancellationToken ct = default)
     {
-        
         var deleted = await _repository.DeleteConstructorAsync(id, ct);
-    
-        if (!deleted) 
-        {
-            return Result.NotFound();
-        }
+
+        if (!deleted) return Result.NotFound();
 
         await _repository.SaveChangesAsync(ct);
         return Result.Success();

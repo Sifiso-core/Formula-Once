@@ -14,7 +14,7 @@ internal class GetDriverById : Endpoint<GetDriverByIdRequest>
 
     public override void Configure()
     {
-        Get("/drivers/{Id}");
+        Get("/teams/drivers/{Id}");
         AllowAnonymous();
     }
 

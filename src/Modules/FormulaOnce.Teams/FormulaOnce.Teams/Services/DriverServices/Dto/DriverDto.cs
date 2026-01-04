@@ -1,6 +1,6 @@
 ﻿using FormulaOnce.Teams.Domain.Driver;
 
-namespace FormulaOnce.Teams.Endpoints.Drivers._Dtos;
+namespace FormulaOnce.Teams.Services.DriverServices.Dto;
 
 public class DriverDto
 {

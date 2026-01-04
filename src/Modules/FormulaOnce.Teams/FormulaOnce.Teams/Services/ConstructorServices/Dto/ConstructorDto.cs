@@ -1,4 +1,4 @@
-﻿namespace FormulaOnce.Teams.Endpoints.Constructors._Dtos;
+﻿namespace FormulaOnce.Teams.Services.ConstructorServices.Dto;
 
 public record ConstructorDto(
     Guid Id,

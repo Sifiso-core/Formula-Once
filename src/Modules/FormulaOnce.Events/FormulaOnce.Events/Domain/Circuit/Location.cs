@@ -2,10 +2,6 @@
 
 public record Location
 {
-    public string Country { get; private set; }
-    public string City { get; private set; }
-    public Coordinates Coordinates { get; private set; }
-
     private Location()
     {
     }
@@ -16,4 +12,8 @@ public record Location
         City = city;
         Coordinates = coordinates;
     }
+
+    public string Country { get; private set; }
+    public string City { get; private set; }
+    public Coordinates Coordinates { get; private set; }
 }

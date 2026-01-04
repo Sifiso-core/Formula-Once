@@ -1,4 +1,4 @@
-﻿using FormulaOnce.Teams.Endpoints.Constructors._Dtos;
+﻿using FormulaOnce.Teams.Services.ConstructorServices.Dto;
 
 namespace FormulaOnce.Teams.Endpoints.Constructors.GetAllConstructors;
 

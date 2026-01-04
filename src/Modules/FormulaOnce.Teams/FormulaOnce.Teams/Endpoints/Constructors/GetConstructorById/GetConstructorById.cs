@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
-using FormulaOnce.Teams.Endpoints.Constructors._Dtos;
 using FormulaOnce.Teams.Services.ConstructorServices;
+using FormulaOnce.Teams.Services.ConstructorServices.Dto;
 
 namespace FormulaOnce.Teams.Endpoints.Constructors.GetConstructorById;
 
@@ -15,7 +15,7 @@ internal class GetConstructorById : Endpoint<ConstructorDto>
 
     public override void Configure()
     {
-        Get("constructors/{Id:guid}");
+        Get("teams/constructors/{Id:guid}");
         AllowAnonymous();
     }
 

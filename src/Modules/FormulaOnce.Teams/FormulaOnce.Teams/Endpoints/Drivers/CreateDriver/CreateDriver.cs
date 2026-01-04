@@ -1,8 +1,8 @@
 ﻿using Ardalis.Result;
 using FastEndpoints;
-using FormulaOnce.Teams.Endpoints.Drivers._Dtos;
 using FormulaOnce.Teams.Mappings;
 using FormulaOnce.Teams.Services.DriverServices;
+using FormulaOnce.Teams.Services.DriverServices.Dto;
 using Microsoft.AspNetCore.Http;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.CreateDriver;
@@ -18,7 +18,7 @@ internal class CreateDriver : Endpoint<CreateDriverRequest, DriverDto>
 
     public override void Configure()
     {
-        Post("/drivers");
+        Post("/teams/drivers");
         AllowAnonymous();
     }
 

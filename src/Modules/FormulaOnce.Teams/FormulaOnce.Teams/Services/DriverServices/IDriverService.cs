@@ -1,5 +1,5 @@
 ﻿using Ardalis.Result;
-using FormulaOnce.Teams.Endpoints.Drivers._Dtos;
+using FormulaOnce.Teams.Services.DriverServices.Dto;
 
 namespace FormulaOnce.Teams.Services.DriverServices;
 

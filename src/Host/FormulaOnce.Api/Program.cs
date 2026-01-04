@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using FastEndpoints;
 using FormulaOnce.Events;
 using FormulaOnce.Teams;
@@ -11,20 +12,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
+builder.Services.ConfigureHttpJsonOptions(options => {
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddFastEndpoints();
 
 builder.Services.AddFormulaOnceTeams(builder.Configuration, logger);
 
-builder.Services.AddFormulaOnceEvents(builder.Configuration,logger);
+builder.Services.AddFormulaOnceEvents(builder.Configuration, logger);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 app.UseHttpsRedirection();
 

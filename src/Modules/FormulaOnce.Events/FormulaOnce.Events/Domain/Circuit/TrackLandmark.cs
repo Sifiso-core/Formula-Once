@@ -2,10 +2,6 @@
 
 public record TrackLandmark
 {
-    public string Label { get; set; }
-    public LandmarkType LandmarkType { get; set; }
-    public int NearTurn { get; set; }
-
     private TrackLandmark()
     {
     }
@@ -16,4 +12,8 @@ public record TrackLandmark
         LandmarkType = landmarkType;
         NearTurn = nearTurn;
     }
+
+    public string Label { get; set; }
+    public LandmarkType LandmarkType { get; set; }
+    public int NearTurn { get; set; }
 }

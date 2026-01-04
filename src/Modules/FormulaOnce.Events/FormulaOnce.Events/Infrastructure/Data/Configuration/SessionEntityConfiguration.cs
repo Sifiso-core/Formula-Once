@@ -9,6 +9,7 @@ public class SessionEntityConfiguration : IEntityTypeConfiguration<Session>
     public void Configure(EntityTypeBuilder<Session> builder)
     {
         builder.ToTable(DbConstants.SessionConstants.TableName);
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.SessionType)

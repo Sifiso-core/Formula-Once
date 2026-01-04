@@ -64,9 +64,7 @@ internal class ConstructorRepository : IConstructorRepository
 
         if (constructor == null) return false;
         if (constructor.Drivers is not null && constructor.Drivers.Any())
-        {
             _dbContext.Drivers.RemoveRange(constructor.Drivers);
-        }
 
         _dbContext.Constructors.Remove(constructor);
         return true;

@@ -16,7 +16,7 @@ internal class UpdateConstructor : Endpoint<UpdateConstructorRequest>
 
     public override void Configure()
     {
-        Put("constructors/{Id:guid}");
+        Put("/teams/constructors/{Id:guid}");
         AllowAnonymous();
     }
 

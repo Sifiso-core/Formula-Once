@@ -1,25 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FastEndpoints" Version="7.1.1" />
-    <PackageReference Include="MediatR" Version="13.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FastEndpoints" Version="7.1.1"/>
+        <PackageReference Include="MediatR" Version="13.1.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Serilog.AspNetCore" Version="10.0.0"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Modules\FormulaOnce.Events\FormulaOnce.Events\FormulaOnce.Events.csproj" />
-    <ProjectReference Include="..\..\Modules\FormulaOnce.Teams\FormulaOnce.Teams\FormulaOnce.Teams.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Modules\FormulaOnce.Events\FormulaOnce.Events\FormulaOnce.Events.csproj"/>
+        <ProjectReference Include="..\..\Modules\FormulaOnce.Teams\FormulaOnce.Teams\FormulaOnce.Teams.csproj"/>
+    </ItemGroup>
 
 </Project>

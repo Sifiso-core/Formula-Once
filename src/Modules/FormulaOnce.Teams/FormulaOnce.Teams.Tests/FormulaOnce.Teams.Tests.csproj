@@ -10,7 +10,7 @@
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.4"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1"/>
-        <PackageReference Include="TngTech.ArchUnitNET.xUnit" Version="0.12.3" />
+        <PackageReference Include="TngTech.ArchUnitNET.xUnit" Version="0.12.3"/>
         <PackageReference Include="xunit" Version="2.9.3"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4"/>
     </ItemGroup>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FormulaOnce.Teams\FormulaOnce.Teams.csproj" />
+        <ProjectReference Include="..\FormulaOnce.Teams\FormulaOnce.Teams.csproj"/>
     </ItemGroup>
 
 </Project>

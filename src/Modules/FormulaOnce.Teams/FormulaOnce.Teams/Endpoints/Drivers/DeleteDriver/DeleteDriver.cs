@@ -15,7 +15,7 @@ internal class DeleteDriver : Endpoint<DeleteDriverRequest>
 
     public override void Configure()
     {
-        Delete("/drivers/{Id}");
+        Delete("/teams/drivers/{Id}");
         AllowAnonymous();
     }
 
