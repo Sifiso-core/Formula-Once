@@ -58,9 +58,8 @@ internal class ConstructorRepository : IConstructorRepository
 
     public async Task<bool> DeleteConstructorAsync(Guid constructorId, CancellationToken cancellationToken)
     {
-        // Fetch ONCE with everything needed for the delete operation
         var constructor = await _dbContext.Constructors
-            .Include(c => c.Drivers) 
+            .Include(c => c.Drivers)
             .FirstOrDefaultAsync(x => x.Id == constructorId, cancellationToken);
 
         if (constructor == null) return false;
@@ -68,6 +67,7 @@ internal class ConstructorRepository : IConstructorRepository
         {
             _dbContext.Drivers.RemoveRange(constructor.Drivers);
         }
+
         _dbContext.Constructors.Remove(constructor);
         return true;
     }
