@@ -41,7 +41,6 @@ internal class DriverRepository : IDriverRepository
 
     public async Task DeleteDriverAsync(Guid id, CancellationToken cancellationToken)
     {
-        // Use a simple tracking query for deletion
         var driver = await _context.Drivers.FindAsync([id], cancellationToken);
         if (driver != null) _context.Drivers.Remove(driver);
     }
@@ -53,7 +52,6 @@ internal class DriverRepository : IDriverRepository
 
     public async Task UpdateDriverAsync(Driver driver, CancellationToken cancellationToken)
     {
-        // When updating, we need the tracked entity
         var driverToUpdate = await GetByIdAsync(driver.Id, cancellationToken);
 
         if (driverToUpdate is not null)

@@ -24,20 +24,6 @@ internal static class DriverMappingExtensions
         };
     }
 
-    public static Driver ToEntity(this DriverDto dto)
-    {
-        return Driver.Factory.Create(
-            dto.LastName,
-            dto.FirstName,
-            dto.Nationality,
-            dto.ConstructorId,
-            dto.RacingNumber,
-            dto.DateOfBirth,
-            dto.Acronym,
-            dto.Id
-        );
-    }
-
     public static DriverDto ToDto(this CreateDriverRequest req)
     {
         return new DriverDto

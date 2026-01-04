@@ -32,10 +32,8 @@ internal class ConstructorService : IConstructorService
 
     public async Task<Result<ConstructorDto>> CreateConstructorAsync(ConstructorDto dto, CancellationToken ct = default)
     {
-        // 1. Map DTO to Entity (Factory inside here generates the ID)
         var constructor = dto.ToEntity();
 
-        // 2. Persist
         await _repository.CreateConstructorAsync(constructor, ct);
         await _repository.SaveChangesAsync(ct);
 
@@ -44,11 +42,11 @@ internal class ConstructorService : IConstructorService
 
     public async Task<Result> UpdateConstructorAsync(ConstructorDto dto, CancellationToken ct = default)
     {
-        // 1. Check existence first to avoid EF tracking issues
+        
         var exists = await _repository.GetConstructorByIdAsync(dto.Id, ct);
         if (exists is null) return Result.NotFound();
 
-        // 2. Perform the update through the repository (Fetch-then-Update pattern)
+        
         await _repository.UpdateConstructorAsync(dto.ToEntity(), ct);
         await _repository.SaveChangesAsync(ct);
 
@@ -57,7 +55,7 @@ internal class ConstructorService : IConstructorService
 
     public async Task<Result> DeleteConstructorAsync(Guid id, CancellationToken ct = default)
     {
-        // Perform the operation directly
+        
         var deleted = await _repository.DeleteConstructorAsync(id, ct);
     
         if (!deleted) 

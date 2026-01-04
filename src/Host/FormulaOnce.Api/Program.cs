@@ -1,4 +1,5 @@
 using FastEndpoints;
+using FormulaOnce.Events;
 using FormulaOnce.Teams;
 using Serilog;
 
@@ -15,6 +16,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddFastEndpoints();
 
 builder.Services.AddFormulaOnceTeams(builder.Configuration, logger);
+
+builder.Services.AddFormulaOnceEvents(builder.Configuration,logger);
 
 var app = builder.Build();
 
