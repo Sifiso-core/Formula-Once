@@ -1,4 +1,5 @@
-﻿using Ardalis.Result;
+﻿using System.Security.Claims;
+using Ardalis.Result;
 using FastEndpoints;
 using FormulaOnce.Events.Services.RaceService;
 using FormulaOnce.Events.Services.RaceService.Dto;
@@ -17,7 +18,7 @@ public class GetRaceById : Endpoint<GetRaceRequest, RaceDto>
     public override void Configure()
     {
         Get("/events/races/{Id}");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
     }
 
     public override async Task HandleAsync(GetRaceRequest req, CancellationToken ct)

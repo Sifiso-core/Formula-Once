@@ -16,7 +16,7 @@ public class DeleteRace : Endpoint<DeleteRaceRequest>
     public override void Configure()
     {
         Delete("/events/races/{Id}");
-        AllowAnonymous();
+        Policies("AdminOnly");
         Summary(s =>
         {
             s.Summary = "Delete a race weekend";

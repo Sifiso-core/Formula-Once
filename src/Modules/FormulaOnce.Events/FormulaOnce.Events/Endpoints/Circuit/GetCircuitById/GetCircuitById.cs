@@ -1,4 +1,5 @@
-﻿using Ardalis.Result;
+﻿using System.Security.Claims;
+using Ardalis.Result;
 using FastEndpoints;
 using FormulaOnce.Events.Services.CircuitService;
 using FormulaOnce.Events.Services.CircuitService.Dto;
@@ -17,7 +18,7 @@ public class GetCircuitById : Endpoint<GetCircuitRequest, CircuitDto>
     public override void Configure()
     {
         Get("/events/circuits/{Id:guid}");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
     }
 
     public override async Task HandleAsync(GetCircuitRequest req, CancellationToken ct)

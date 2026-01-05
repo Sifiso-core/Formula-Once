@@ -19,6 +19,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Modules\FormulaOnce.Events\FormulaOnce.Events\FormulaOnce.Events.csproj"/>
+        <ProjectReference Include="..\..\Modules\FormulaOnce.Identity\FormulaOnce.Identity\FormulaOnce.Identity.csproj" />
         <ProjectReference Include="..\..\Modules\FormulaOnce.Teams\FormulaOnce.Teams\FormulaOnce.Teams.csproj"/>
     </ItemGroup>
 

@@ -19,7 +19,7 @@ public class CreateRace : Endpoint<CreateRaceRequest, RaceDto>
     public override void Configure()
     {
         Post("/events/races");
-        AllowAnonymous();
+        Policies("AdminOnly");
         Summary(s =>
         {
             s.Summary = "Create a new race weekend";

@@ -16,7 +16,7 @@ public class DeleteCircuitEndpoint : Endpoint<DeleteCircuitRequest>
     public override void Configure()
     {
         Delete("/events/circuits/{Id}");
-        AllowAnonymous();
+        Policies("AdminOnly");
         Summary(s =>
         {
             s.Summary = "Delete a circuit";

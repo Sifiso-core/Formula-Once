@@ -17,7 +17,7 @@ internal class UpdateDriver : Endpoint<UpdateDriverRequest>
     public override void Configure()
     {
         Put("/teams/drivers/{Id}");
-        AllowAnonymous();
+        Policies("AdminOnly");
     }
 
     public override async Task HandleAsync(UpdateDriverRequest req, CancellationToken ct)

@@ -34,7 +34,6 @@ public class Race
         public static Race Create(string title, int season, int round, Circuit.Circuit circuit, int laps)
         {
             // F1 races (except Monaco) must exceed 305km. 
-            // We can bake this "Sporting Regulation" into the factory.
             var totalDistance = Math.Round(laps * circuit.LengthKm, 3);
 
             return new Race

@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using System.Security.Claims;
+using FastEndpoints;
 using FormulaOnce.Teams.Services.DriverServices;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.GetAllDrivers;
@@ -15,7 +16,7 @@ internal class GetAllDrivers : EndpointWithoutRequest<GetAllDriversResponse>
     public override void Configure()
     {
         Get("/teams/drivers");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
     }
 
     public override async Task HandleAsync(CancellationToken ct)

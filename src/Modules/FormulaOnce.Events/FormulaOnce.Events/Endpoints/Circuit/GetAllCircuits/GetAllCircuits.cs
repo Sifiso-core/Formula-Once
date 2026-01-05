@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using System.Security.Claims;
+using FastEndpoints;
 using FormulaOnce.Events.Services.CircuitService;
 
 namespace FormulaOnce.Events.Endpoints.Circuit.GetAllCircuits;
@@ -15,7 +16,7 @@ public class GetCircuitsEndpoint : EndpointWithoutRequest<GetAllCircuitsResponse
     public override void Configure()
     {
         Get("/events/circuits");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
     }
 
     public override async Task HandleAsync(CancellationToken ct)

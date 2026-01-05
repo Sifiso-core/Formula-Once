@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using System.Security.Claims;
+using FastEndpoints;
 using FormulaOnce.Teams.Services.DriverServices;
 
 namespace FormulaOnce.Teams.Endpoints.Drivers.GetDriverById;
@@ -15,7 +16,7 @@ internal class GetDriverById : Endpoint<GetDriverByIdRequest>
     public override void Configure()
     {
         Get("/teams/drivers/{Id}");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
     }
 
     public override async Task HandleAsync(GetDriverByIdRequest req, CancellationToken ct)

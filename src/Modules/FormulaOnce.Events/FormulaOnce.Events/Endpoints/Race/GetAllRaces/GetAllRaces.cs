@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using System.Security.Claims;
+using FastEndpoints;
 using FormulaOnce.Events.Services.RaceService;
 
 namespace FormulaOnce.Events.Endpoints.Race.GetAllRaces;
@@ -15,7 +16,7 @@ public class GetAllRaces : EndpointWithoutRequest<GetAllRacesResponse>
     public override void Configure()
     {
         Get("/events/races");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
         Summary(s =>
         {
             s.Summary = "Get all scheduled races";

@@ -16,7 +16,7 @@ internal class DeleteDriver : Endpoint<DeleteDriverRequest>
     public override void Configure()
     {
         Delete("/teams/drivers/{Id}");
-        AllowAnonymous();
+        Policies("AdminOnly");
     }
 
     public override async Task HandleAsync(DeleteDriverRequest req, CancellationToken ct)

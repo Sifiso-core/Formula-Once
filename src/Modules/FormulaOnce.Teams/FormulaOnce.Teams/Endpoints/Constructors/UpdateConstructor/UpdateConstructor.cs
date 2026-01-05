@@ -17,7 +17,7 @@ internal class UpdateConstructor : Endpoint<UpdateConstructorRequest>
     public override void Configure()
     {
         Put("/teams/constructors/{Id:guid}");
-        AllowAnonymous();
+        Policies("AdminOnly");
     }
 
     public override async Task HandleAsync(UpdateConstructorRequest req, CancellationToken ct)

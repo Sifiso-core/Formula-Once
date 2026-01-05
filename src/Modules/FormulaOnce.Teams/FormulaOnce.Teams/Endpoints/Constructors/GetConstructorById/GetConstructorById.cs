@@ -1,4 +1,5 @@
-﻿using FastEndpoints;
+﻿using System.Security.Claims;
+using FastEndpoints;
 using FormulaOnce.Teams.Services.ConstructorServices;
 using FormulaOnce.Teams.Services.ConstructorServices.Dto;
 
@@ -16,7 +17,7 @@ internal class GetConstructorById : Endpoint<ConstructorDto>
     public override void Configure()
     {
         Get("teams/constructors/{Id:guid}");
-        AllowAnonymous();
+        Claims(ClaimTypes.NameIdentifier);
     }
 
     public override async Task HandleAsync(ConstructorDto req, CancellationToken ct)

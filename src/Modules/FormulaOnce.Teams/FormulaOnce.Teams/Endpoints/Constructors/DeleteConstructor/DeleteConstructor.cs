@@ -16,7 +16,7 @@ internal class DeleteConstructor : Endpoint<DeleteConstructorRequest>
     public override void Configure()
     {
         Delete("/teams/constructors/{Id:guid}");
-        AllowAnonymous();
+        Policies("AdminOnly");
     }
 
     public override async Task HandleAsync(DeleteConstructorRequest req, CancellationToken ct)

@@ -19,7 +19,7 @@ internal class CreateDriver : Endpoint<CreateDriverRequest, DriverDto>
     public override void Configure()
     {
         Post("/teams/drivers");
-        AllowAnonymous();
+        Policies("AdminOnly");
     }
 
     public override async Task HandleAsync(CreateDriverRequest req, CancellationToken ct)

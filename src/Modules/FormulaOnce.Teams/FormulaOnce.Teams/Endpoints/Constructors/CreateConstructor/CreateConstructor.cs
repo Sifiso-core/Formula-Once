@@ -17,7 +17,7 @@ internal class CreateConstructor : Endpoint<CreateConstructorRequest, Constructo
     public override void Configure()
     {
         Post("/teams/constructors");
-        AllowAnonymous();
+        Policies("AdminOnly");
     }
 
     public override async Task HandleAsync(CreateConstructorRequest req, CancellationToken ct)
