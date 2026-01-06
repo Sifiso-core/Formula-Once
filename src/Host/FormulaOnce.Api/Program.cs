@@ -1,6 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json.Serialization;
 using FastEndpoints;
+using FormulaOnce.Api.Middleware;
+using FormulaOnce.Commerce;
 using FormulaOnce.Events;
 using FormulaOnce.Identity;
 using FormulaOnce.Identity.Model;
@@ -26,6 +28,10 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+builder.Services.AddProblemDetails();
+
 builder.Services.AddFastEndpoints();
 
 builder.Services.AddFormulaOnceIdentity(builder.Configuration, logger);
@@ -33,6 +39,8 @@ builder.Services.AddFormulaOnceIdentity(builder.Configuration, logger);
 builder.Services.AddFormulaOnceTeams(builder.Configuration, logger);
 
 builder.Services.AddFormulaOnceEvents(builder.Configuration, logger);
+
+builder.Services.AddFormulaOnceCommerce(builder.Configuration, logger);
 
 var app = builder.Build();
 
@@ -49,10 +57,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseExceptionHandler();
+
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseFastEndpoints(options => { options.Errors.UseProblemDetails(); });
+app.UseFastEndpoints(options =>
+{
+    options.Errors.UseProblemDetails();
+    options.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
+});
 
 app.Run();

@@ -484,6 +484,8 @@ $RECYCLE.BIN/
 *.swp
 
 appsettings.development.json
-formulaOnce.Events.http
+*.http
 formulaOnce.Teams.http
+formulaOnce.Commerce.http
+formulaOnce.Identity.http
 Migrations

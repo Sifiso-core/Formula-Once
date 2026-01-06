@@ -4,7 +4,6 @@ using FormulaOnce.Identity.Data;
 using FormulaOnce.Identity.Model;
 using FormulaOnce.Identity.Options;
 using FormulaOnce.Identity.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,8 +18,12 @@ public static class FormulaOnceIdentityExtensions
     public static IServiceCollection AddFormulaOnceIdentity(this IServiceCollection services,
         ConfigurationManager configuration, ILogger logger)
     {
+        var connectionString = configuration.GetConnectionString("IdentityDatabase") ??
+                               throw new InvalidOperationException(
+                                   "Connection string for the Identity module is not Configured.");
+
         services.AddDbContext<UserDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("IdentityDatabase")));
+            options.UseSqlServer(connectionString));
 
         services.AddOptions<JwtOptions>()
             .Bind(configuration.GetSection(JwtOptions.SectionName))

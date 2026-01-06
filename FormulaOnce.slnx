@@ -4,6 +4,9 @@
         <Project Path="src/Host/FormulaOnce.Api/FormulaOnce.Api.csproj" />
     </Folder>
     <Folder Name="/src/Modules/" />
+    <Folder Name="/src/Modules/FormulaOnce.Commerce/">
+        <Project Path="src/Modules/FormulaOnce.Commerce/FormulaOnce.Commerce/FormulaOnce.Commerce.csproj" />
+    </Folder>
     <Folder Name="/src/Modules/FormulaOnce.Events/">
         <Project Path="src/Modules/FormulaOnce.Events/FormulaOnce.Events.Tests/FormulaOnce.Events.Tests.csproj" />
         <Project Path="src/Modules/FormulaOnce.Events/FormulaOnce.Events/FormulaOnce.Events.csproj" />
