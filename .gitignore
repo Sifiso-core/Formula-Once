@@ -485,6 +485,7 @@ $RECYCLE.BIN/
 
 appsettings.development.json
 *.http
+*.http
 formulaOnce.Teams.http
 formulaOnce.Commerce.http
 formulaOnce.Identity.http
