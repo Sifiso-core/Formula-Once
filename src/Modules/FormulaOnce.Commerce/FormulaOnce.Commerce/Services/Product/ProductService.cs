@@ -14,7 +14,7 @@ public class ProductService(IProductRepository productRepository) : IProductServ
         var price = Price.Create(request.Price, request.Currency);
 
         var productResult = Domain.Product.Product.Create(
-            request.Name,
+            request.Name, request.Description,
             price,
             request.Stock);
 

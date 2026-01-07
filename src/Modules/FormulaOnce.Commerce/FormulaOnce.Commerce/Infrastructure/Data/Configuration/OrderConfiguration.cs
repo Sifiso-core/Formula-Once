@@ -20,13 +20,15 @@ internal class OrderConfiguration : IEntityTypeConfiguration<Order>
             sa.Property(p => p.Country).HasMaxLength(100).IsRequired();
         });
 
+        builder.Property(p => p.TotalAmount).HasPrecision(18, 2);
+
         builder.Property(x => x.Status)
             .HasConversion(new EnumToStringConverter<OrderStatus>())
             .HasMaxLength(20);
 
         builder.HasMany(x => x.Items)
-            .WithOne()
-            .HasForeignKey("OrderId")
+            .WithOne(x => x.Order)
+            .HasForeignKey(x => x.OrderId)
             .OnDelete(DeleteBehavior.Restrict);
 
         var navigation = builder.Metadata.FindNavigation(nameof(Order.Items));

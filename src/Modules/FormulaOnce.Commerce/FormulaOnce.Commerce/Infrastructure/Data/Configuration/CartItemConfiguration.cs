@@ -10,8 +10,11 @@ internal class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
     public void Configure(EntityTypeBuilder<CartItem> builder)
     {
         builder.HasKey(x => x.Id);
-        
-        // Explicitly define the shadow property here as well
-        builder.Property<Guid>("CartId").IsRequired();
+
+        builder.Property(x => x.Id).ValueGeneratedNever();
+
+        builder.Property(x => x.CartId).IsRequired();
+
+        builder.HasOne(c => c.Cart).WithMany(c => c.Items).HasForeignKey(c => c.CartId).HasPrincipalKey(c => c.Id);
     }
 }

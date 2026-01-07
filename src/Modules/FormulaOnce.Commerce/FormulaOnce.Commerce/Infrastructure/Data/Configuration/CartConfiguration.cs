@@ -13,13 +13,14 @@ internal class CartConfiguration : IEntityTypeConfiguration<Cart>
 
         // One-to-Many with encapsulation support
         builder.HasMany(x => x.Items)
-            .WithOne()
-            .HasForeignKey("CartId").IsRequired() // Shadow Property in CartItem table
+            .WithOne(c => c.Cart)
+            .HasForeignKey(c => c.CartId)
+            .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
         // Tell EF to use the private backing field _items
-        var navigation = builder.Metadata.FindNavigation(nameof(Cart.Items));
-        navigation?.SetPropertyAccessMode(PropertyAccessMode.Field);
+        // var navigation = builder.Metadata.FindNavigation(nameof(Cart.Items));
+        // navigation?.SetPropertyAccessMode(PropertyAccessMode.Field);
 
         builder.HasIndex(x => x.UserId).IsUnique();
     }

@@ -1,4 +1,5 @@
-﻿using Ardalis.Result;
+﻿using System.Data;
+using Ardalis.Result;
 using FormulaOnce.Commerce.Infrastructure.Repositories;
 using FormulaOnce.Commerce.Infrastructure.Repositories.Cart;
 using FormulaOnce.Commerce.Infrastructure.Repositories.Product;
@@ -11,35 +12,23 @@ public class CartService(
 {
     public async Task<Result> AddToCartAsync(Guid userId, Guid productId, int quantity, CancellationToken ct)
     {
-       
         var product = await productRepository.GetByIdAsync(productId, ct);
-        if (product == null)
-            return Result.NotFound("Product not found.");
+        if (product == null) return Result.NotFound("Product not found.");
+        if (product.StockQuantity < quantity) return Result.Conflict("Insufficient stock.");
 
-        if (product.StockQuantity < quantity)
-            return Result.Conflict($"Insufficient stock. Only {product.StockQuantity} available.");
-
-       
         var cart = await cartRepository.GetByUserIdAsync(userId, ct);
-        bool isNew = false;
 
         if (cart == null)
         {
             cart = Domain.Cart.Cart.Create(userId);
-            isNew = true;
+
+            await cartRepository.AddAsync(cart, ct); 
         }
-
-       
         var result = cart.AddOrUpdateItem(productId, quantity);
-        if (!result.IsSuccess)
-            return result;
-
-       
-        if (isNew)
-            await cartRepository.AddAsync(cart, ct);
-        else
-            await cartRepository.UpdateAsync(cart, ct);
-
+        if (!result.IsSuccess) return result;
+        
+        await cartRepository.UpdateAsync(cart, ct); 
+    
         return Result.Success();
     }
 

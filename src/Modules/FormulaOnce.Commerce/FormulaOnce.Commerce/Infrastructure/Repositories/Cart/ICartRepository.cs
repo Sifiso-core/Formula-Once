@@ -8,4 +8,5 @@ public interface ICartRepository
     Task AddAsync(Domain.Cart.Cart cart, CancellationToken ct);
     Task UpdateAsync(Domain.Cart.Cart cart, CancellationToken ct);
     Task<CartDto?> GetCartDtoByUserIdAsync(Guid userId, CancellationToken ct);
+    Task SaveChangesAsync(CancellationToken ct);
 }

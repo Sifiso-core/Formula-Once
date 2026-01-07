@@ -16,7 +16,7 @@ public class Product
         // For EF
     }
 
-    public static Result<Product> Create(string name, Price price, int stock)
+    public static Result<Product> Create(string name, string description, Price price, int stock)
     {
         if (string.IsNullOrWhiteSpace(name))
             return Result.Invalid(new ValidationError("Name is required"));
@@ -26,6 +26,7 @@ public class Product
             Id = Guid.NewGuid(),
             Name = name,
             Price = price,
+            Description = description,
             StockQuantity = stock
         };
     }

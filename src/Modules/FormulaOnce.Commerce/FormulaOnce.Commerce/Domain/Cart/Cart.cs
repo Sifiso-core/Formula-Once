@@ -1,4 +1,5 @@
-﻿using Ardalis.Result;
+﻿using System.ComponentModel.DataAnnotations;
+using Ardalis.Result;
 
 namespace FormulaOnce.Commerce.Domain.Cart;
 
@@ -29,7 +30,8 @@ public class Cart
         }
         else
         {
-            _items.Add(new CartItem(productId, quantity));
+            var cartItem = CartItem.Create(productId, Id, quantity);
+            _items.Add(cartItem);
         }
 
         return Result.Success();
