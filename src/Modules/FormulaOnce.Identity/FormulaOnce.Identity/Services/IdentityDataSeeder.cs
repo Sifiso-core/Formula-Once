@@ -8,7 +8,6 @@ public static class IdentityDataSeeder
     public static async Task SeedAsync(UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole<Guid>> roleManager)
     {
-        // 1. Seed Roles
         string[] roleNames = ["Admin", "Fan"];
         foreach (var roleName in roleNames)
         {
@@ -18,7 +17,6 @@ public static class IdentityDataSeeder
             }
         }
 
-        // 2. Seed Default Admin User
         const string adminEmail = "admin@formulaonce.com";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
 

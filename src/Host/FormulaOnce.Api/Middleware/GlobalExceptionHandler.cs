@@ -23,13 +23,12 @@ internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : 
             Instance = $"{httpContext.Request.Method} {httpContext.Request.Path}"
         };
 
-        // You can add a unique TraceId to help you find the error in your logs
         problemDetails.Extensions.Add("traceId", httpContext.TraceIdentifier);
 
         httpContext.Response.StatusCode = problemDetails.Status.Value;
 
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
 
-        return true; // Indicates the exception has been handled
+        return true;
     }
 }

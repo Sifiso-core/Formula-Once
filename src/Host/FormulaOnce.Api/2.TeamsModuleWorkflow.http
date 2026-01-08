@@ -1,0 +1,156 @@
+@BaseUrl = http://localhost:5000/teams
+@ConstructorId = <REPLACE_WITH_CONSTRUCTOR_ID>
+@DriverId = <REPLACE_WITH_DRIVER_ID>
+@Admintoken=<REPLACE_WITH_ADMIN_JWT_TOKEN>
+@Usertoken=<REPLACE_WITH_USER_JWT_TOKEN>
+
+### 1. Create a Constructor (Ferrari)
+POST {{BaseUrl}}/constructors
+Authorization: Bearer {{Admintoken}}
+Content-Type: application/json
+Authorization: Bearer {{Admintoken}}
+
+{
+  "name": "Ferrari",
+  "baseLocation": "Maranello, Italy",
+  "establishedYear": 1950,
+  "stats": {
+    "allTimeSummary": {
+      "grandPrixEntered": 1123,
+      "teamPoints": 10675,
+      "highestRaceFinish": "1 (x249)",
+      "podiums": 639,
+      "highestGridPosition": "1 (x254)",
+      "polePositions": 254,
+      "worldChampionships": 16
+    },
+    "seasonStats": {
+      "seasonPosition": 4,
+      "seasonPoints": 398,
+      "grandPrixStats": {
+        "grandPrixRaces": 24,
+        "grandPrixPoints": 360,
+        "grandPrixWins": 0,
+        "grandPrixPodiums": 7,
+        "grandPrixPoles": 1,
+        "grandPrixTop10s": 39
+      },
+      "sprintStats": {
+        "sprintRaces": 6,
+        "sprintPoints": 38,
+        "sprintWins": 1,
+        "sprintPodiums": 2,
+        "sprintPoles": 1,
+        "sprintTop10s": 8
+      },
+      "dhlFastestLaps": 2,
+      "dnfs": 4
+    }
+  }
+}
+
+### 2. Get All Constructors
+# Verifies the repository's .Include() chain for nested tables.
+GET {{BaseUrl}}/constructors
+Authorization: Bearer {{Admintoken}}
+
+### 3. Get Constructor By ID
+GET {{BaseUrl}}/constructors/{{ConstructorId}}
+
+### 4. Update Constructor Stats
+PUT {{BaseUrl}}/constructors/{{ConstructorId}}
+Content-Type: application/json
+Authorization: Bearer {{Admintoken}}
+
+{
+  "id": "{{ConstructorId}}",
+  "name": "Scuderia Ferrari HP",
+  "baseLocation": "Maranello, Italy",
+  "establishedYear": 1950,
+  "stats": {
+    "allTimeSummary": {
+      "grandPrixEntered": 1124,
+      "teamPoints": 10700,
+      "highestRaceFinish": "1 (x250)",
+      "podiums": 640,
+      "highestGridPosition": "1 (x254)",
+      "polePositions": 254,
+      "worldChampionships": 16
+    },
+    "seasonStats": {
+      "seasonPosition": 3,
+      "seasonPoints": 420,
+      "grandPrixStats": {
+        "grandPrixRaces": 25,
+        "grandPrixPoints": 380,
+        "grandPrixWins": 1,
+        "grandPrixPodiums": 8,
+        "grandPrixPoles": 1,
+        "grandPrixTop10s": 40
+      },
+      "sprintStats": {
+        "sprintRaces": 6,
+        "sprintPoints": 38,
+        "sprintWins": 1,
+        "sprintPodiums": 2,
+        "sprintPoles": 1,
+        "sprintTop10s": 8
+      },
+      "dhlFastestLaps": 3,
+      "dnfs": 4
+    }
+  }
+}
+
+### 5. Delete Constructor
+DELETE {{BaseUrl}}/constructors/{{ConstructorId}}
+Authorization: Bearer {{Admintoken}}
+
+
+### 6. Create a Driver
+POST {{BaseUrl}}/drivers
+Content-Type: application/json
+Authorization: Bearer {{Admintoken}}
+
+{
+  "firstName": "Charles",
+  "lastName": "Leclerc",
+  "fullName" : "Charles Leclerc",
+  "nationality": "Monegasque",
+  "constructorId": "{{ConstructorId}}",
+  "racingNumber": 16,
+  "dateOfBirth": "1997-10-16T00:00:00Z",
+  "acronym": "LEC"
+}
+
+###7. Get All Drivers
+GET {{BaseUrl}}/drivers
+Accept: application/json
+Authorization: Bearer {{Admintoken}}
+
+###8. Get Driver By ID
+GET {{BaseUrl}}/drivers/{{DriverId}}
+Accept: application/json
+Authorization: Bearer {{Admintoken}}
+
+###9. Update Driver
+PUT {{BaseUrl}}/drivers/{{DriverId}}
+Content-Type: application/json
+Authorization: Bearer {{Admintoken}}
+
+{
+  "racingNumber" : 20,
+  "nationality" : "Italian",
+  "constructorId" : "{{ConstructorId}}",
+  "fullName" : "Charlie Leclerc",
+  "firstName" : "Charlie",
+  "lastName" : "Leclerc",
+  "acronym" : "CLE"
+}
+
+###10. Delete Driver
+DELETE {{BaseUrl}}/drivers/{{DriverId}}
+Authorization: Bearer {{Admintoken}}
+
+
+

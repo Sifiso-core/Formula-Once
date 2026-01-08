@@ -1,0 +1,91 @@
+﻿@baseUrl = http://localhost:5000/commerce
+@adminToken = <REPLACE_WITH_ADMIN_JWT_TOKEN>
+@userToken = <RepLACE_WITH_USER_JWT_TOKEN>
+
+### 1. Create a Product (Admin)
+# @name createProduct
+POST {{baseUrl}}/products
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Charles Leclerc Signature Cap",
+  "description": "Charles Leclerc limited edition cap",
+  "price": 50.00,
+  "currency": "USD",
+  "stock": 5,
+  "type": "Merchandise"
+}
+
+###
+#Replace this with the ID returned from Step 1 if you want to be precise
+@productId = <REPLACE_WITH_PRODUCTID>
+
+### 2. Update Customer Profile (User)
+# Required to avoid "Shipping address required" error during checkout
+PUT {{baseUrl}}/customer/profile
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+  "shippingAddress": {
+    "street": "123 Racing Circuit",
+    "city": "Silverstone",
+    "province": "Northamptonshire",
+    "postalCode": "12345",
+    "country": "UK"
+  },
+  "billingAddress": {
+    "street": "123 Racing Circuit",
+    "city": "Silverstone",
+    "province": "Northamptonshire",
+    "postalCode": "12345",
+    "country": "UK"
+  }
+}
+
+### 3. Add Product to Cart (User)
+POST {{baseUrl}}/cart
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+  "productId": "{{productId}}",
+  "quantity": 2
+}
+
+###4. Remove Product FromCart (User) "Should You Wish Too"
+POST {{baseUrl}}/cart/remove
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+  "productId": "{{productId}}"
+}
+
+### 5. Get Current Cart (User)
+# Verify items are added and CartId 
+GET {{baseUrl}}/cart
+Authorization: Bearer {{userToken}}
+
+### 6. Checkout (User)
+# @name checkout
+POST {{baseUrl}}/cart/checkout
+Authorization: Bearer {{userToken}}
+
+### 7. Get Order Details (User)
+# Replace 'ORDER_ID_HERE' with the ID returned from Step 5
+@orderId = <REPLACE_WITH_ORDERID>
+GET {{baseUrl}}/orders/{{orderId}}
+Authorization: Bearer {{userToken}}
+
+### 8. Get User Dashboard (User)
+# View lifetime spend, order count, and empty cart status
+GET {{baseUrl}}/dashboard
+Authorization: Bearer {{userToken}}
+
+### 9. Verify Cart is Empty After Checkout(User)
+# Post-checkout, the cart items should be cleared
+GET {{baseUrl}}/commerce/cart
+Authorization: Bearer {{userToken}}
+

@@ -1,0 +1,89 @@
+﻿@BaseUrl = http://localhost:5000/events
+@Admintoken=<REPLACE_WITH_ADMIN_JWT_TOKEN>
+@Usertoken=<REPLACE_WITH_USER_JWT_TOKEN>
+
+### 1. Create a Circuit (Albert Park)
+# @name createCircuit
+POST {{BaseUrl}}/circuits
+Content-Type: application/json
+
+{
+  "name": "Albert Park Circuit",
+  "lengthKm": 5.278,
+  "location": {
+    "country": "Australia",
+    "city": "Melbourne",
+    "latitude": -37.8497,
+    "longitude": 144.968
+  },
+  "landmarks": [
+    {
+      "label": "Turn 1 (Jones)",
+      "type": "DrsDetectionZone",
+      "nearTurn": 1
+    },
+    {
+      "label": "Lakeside Drive",
+      "type": "SpeedTrap",
+      "nearTurn": 11
+    }
+  ]
+}
+
+### Save the Circuit ID from the previous response
+@circuitId = <enter_created_circuit_id_here>
+
+---
+
+### 2. Get All Circuits
+GET {{BaseUrl}}/circuits
+
+---
+
+### 3. Create a Race (Standard Weekend)
+# This will trigger the Scheduler to create FP1, FP2, FP3, Q1-3, and Race
+POST {{BaseUrl}}/races
+Content-Type: application/json
+
+{
+  "title": "Australian Grand Prix",
+  "season": 2026,
+  "round": 1,
+  "circuitId": "{{circuitId}}",
+  "numberOfLaps": 58,
+  "mainRaceStartTime": "2026-03-15T15:00:00Z",
+  "isSprintWeekend": false
+}
+
+### 4. Create a Race (Sprint Weekend)
+# This generates FP1, SQ1-3, Sprint, Q1-3, and Race
+POST {{BaseUrl}}/races
+Content-Type: application/json
+
+{
+  "title": "Brazilian Grand Prix",
+  "season": 2026,
+  "round": 21,
+  "circuitId": "{{circuitId}}",
+  "numberOfLaps": 71,
+  "mainRaceStartTime": "2026-11-01T14:00:00Z",
+  "isSprintWeekend": true
+}
+
+
+
+### 5. Get All Races
+# Verify all sessions (Practice, Quali, etc.) were generated correctly
+GET {{BaseUrl}}/races
+
+---
+
+
+### 6. Delete a Race
+@raceId = <enter_a_race_id_here>
+DELETE {{BaseUrl}}/races/{{raceId}}
+
+---
+
+### 7. Delete a Circuit
+DELETE {{BaseUrl}}/circuits/{{circuitId}}

@@ -33,15 +33,6 @@ public class CartRepository : ICartRepository
 
     public async Task UpdateAsync(Domain.Cart.Cart cart, CancellationToken ct)
     {
-        // foreach (var item in cart.Items)
-        // {
-        //     var entry = _context.Entry(item);
-        //     if (entry.State == EntityState.Detached)
-        //     {
-        //         _context.Entry(item).State = EntityState.Added;
-        //     }
-        // }
-
         await _context.SaveChangesAsync(ct);
     }
 

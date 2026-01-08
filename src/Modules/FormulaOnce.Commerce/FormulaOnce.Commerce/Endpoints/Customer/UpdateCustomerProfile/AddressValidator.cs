@@ -9,7 +9,7 @@ public class AddressValidator : Validator<AddressDto>
     {
         RuleFor(x => x.Street).NotEmpty().MaximumLength(200);
         RuleFor(x => x.City).NotEmpty().MaximumLength(100);
-        RuleFor(x => x.ZipCode).NotEmpty().Matches(@"^\d{5}(-\d{4})?$")
+        RuleFor(x => x.PostalCode).NotEmpty().Matches(@"^\d{5}(-\d{4})?$")
             .WithMessage("Invalid Zip Code format.");
         RuleFor(x => x.Country).NotEmpty().MaximumLength(100);
     }

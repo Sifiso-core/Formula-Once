@@ -1,0 +1,38 @@
+﻿@baseUrl = http://localhost:5000/Identity
+
+###1 .Register User 
+#Normal User Signup without Admin Privileges
+POST {{BaseUrl}}
+Content-Type:
+
+{
+    "firstName": "exampleFirstName",
+    "lastName": "exampleLastName",
+    "email": "example@gmail.com",
+    "password": "examplePassword123!"
+}
+
+
+
+### 1. Login as the user to obtain JWT token
+# @name userLogin
+POST {{BaseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "example@gmail.com",
+  "password": "examplePassword123!"
+}
+
+### 1. Login as admin  user to obtain admin JWT token
+# @name adminLogin
+# Admin will be seeded via the  IdentityDataSeeder service during application startup
+POST {{BaseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "admin@formulaonce.com",
+  "password": "Formula1Secret2026!"
+}
+
+

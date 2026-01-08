@@ -16,8 +16,8 @@ internal class DriverRepository : IDriverRepository
     public async Task<List<Driver>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _context.Drivers
-            .Include(d => d.Constructor) // Load the Team info
-            .Include(d => d.CareerDriverStats) // Load the value object stats
+            .Include(d => d.Constructor)
+            .Include(d => d.CareerDriverStats)
             .AsNoTracking()
             .ToListAsync(cancellationToken);
     }

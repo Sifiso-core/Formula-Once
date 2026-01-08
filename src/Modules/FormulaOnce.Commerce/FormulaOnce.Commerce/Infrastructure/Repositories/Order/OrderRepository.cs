@@ -27,7 +27,7 @@ public class OrderRepository(CommerceDbContext context) : IOrderRepository
         await context.Orders.AddAsync(order, ct);
         await context.SaveChangesAsync(ct);
     }
-    
+
     public async Task<UserDashboardDto> GetUserDashboardAsync(Guid userId, CancellationToken ct)
     {
         var orders = await context.Orders
@@ -45,9 +45,9 @@ public class OrderRepository(CommerceDbContext context) : IOrderRepository
             orders.Count,
             orders.Sum(o => o.TotalAmount),
             orders.Take(5).Select(o => new OrderSummaryDto(
-                o.Id, 
-                o.OrderDate, 
-                o.TotalAmount, 
+                o.Id,
+                o.OrderDate,
+                o.TotalAmount,
                 o.Status.ToString()
             )).ToList(),
             cartItemCount

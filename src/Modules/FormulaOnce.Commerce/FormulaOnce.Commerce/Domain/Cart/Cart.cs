@@ -8,7 +8,6 @@ public class Cart
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; } // The Owner
 
-    // Encapsulation: The outside world cannot touch this list
     private readonly List<CartItem> _items = new();
     public IReadOnlyCollection<CartItem> Items => _items.AsReadOnly();
 

@@ -8,7 +8,6 @@ namespace FormulaOnce.Teams.Mappings;
 
 internal static class ConstructorMappingExtensions
 {
-    // --- Domain -> DTO ---
     public static ConstructorDto ToDto(this Constructor constructor)
     {
         return new ConstructorDto(

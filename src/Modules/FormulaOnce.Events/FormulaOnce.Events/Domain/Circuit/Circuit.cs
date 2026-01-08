@@ -4,7 +4,6 @@ namespace FormulaOnce.Events.Domain.Circuit;
 
 public class Circuit
 {
-    // The landmarks shown in your image
     private readonly List<TrackLandmark> _landmarks = new();
 
     private Circuit()
@@ -20,7 +19,6 @@ public class Circuit
 
     public void AddLandmark(string label, LandmarkType type, int nearTurn)
     {
-        // Business logic: Don't allow duplicate specific zones if necessary
         _landmarks.Add(new TrackLandmark(label, type, nearTurn));
     }
 

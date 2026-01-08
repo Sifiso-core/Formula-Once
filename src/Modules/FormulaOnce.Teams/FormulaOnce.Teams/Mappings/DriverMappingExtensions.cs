@@ -59,7 +59,7 @@ internal static class DriverMappingExtensions
     public static Driver ToUpdateEntity(this DriverDto dto)
     {
         return Driver.Factory.CreateForUpdate(
-            dto.FirstName, // name parameter ordering matches existing usages
+            dto.FirstName,
             dto.LastName,
             dto.Nationality,
             dto.ConstructorId,

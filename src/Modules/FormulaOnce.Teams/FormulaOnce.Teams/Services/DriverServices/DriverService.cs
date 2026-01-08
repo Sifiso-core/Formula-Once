@@ -42,7 +42,6 @@ internal class DriverService : IDriverService
                 ErrorMessage = "The specified Constructor does not exist."
             });
 
-        // 2. Create via Factory
         var driver = Driver.Factory.Create(dto.FirstName, dto.LastName, dto.Nationality,
             dto.ConstructorId, dto.RacingNumber, dto.DateOfBirth, dto.Acronym, dto.Id);
 

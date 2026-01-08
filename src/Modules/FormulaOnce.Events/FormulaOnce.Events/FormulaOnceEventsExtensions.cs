@@ -35,8 +35,8 @@ public static class FormulaOnceEventsExtensions
 
         services.AddScoped<RaceWeekendScheduler>();
 
-        // 4. Application Services (Scoped)
         services.AddScoped<ICircuitService, CircuitService>();
+        
         services.AddScoped<IRaceService, RaceService>();
 
         logger.Information("::{module} module services registered", "Events");

@@ -28,7 +28,6 @@ public class GetAllRaces : EndpointWithoutRequest<GetAllRacesResponse>
     {
         var result = await _raceService.GetAllAsync(ct);
 
-        // Since it's a list, even an empty collection is a Success (200 OK)
         var response = new GetAllRacesResponse
         {
             Races = result.Value
