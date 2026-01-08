@@ -11,16 +11,11 @@ internal class CartConfiguration : IEntityTypeConfiguration<Cart>
     {
         builder.HasKey(x => x.Id);
 
-        // One-to-Many with encapsulation support
         builder.HasMany(x => x.Items)
             .WithOne(c => c.Cart)
             .HasForeignKey(c => c.CartId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
-
-        // Tell EF to use the private backing field _items
-        // var navigation = builder.Metadata.FindNavigation(nameof(Cart.Items));
-        // navigation?.SetPropertyAccessMode(PropertyAccessMode.Field);
 
         builder.HasIndex(x => x.UserId).IsUnique();
     }

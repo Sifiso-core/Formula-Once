@@ -12,7 +12,6 @@ internal class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
         builder.HasKey(x => x.Id);
 
-        // Value Object: Flatten Address into the Order table
         builder.OwnsOne(x => x.ShippingAddress, sa =>
         {
             sa.Property(p => p.Street).HasMaxLength(200).IsRequired();

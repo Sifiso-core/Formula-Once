@@ -12,7 +12,6 @@ internal class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.ToTable("Customers");
         builder.HasKey(x => x.Id);
 
-        // Map Shipping Address with specific column prefixes
         builder.OwnsOne(x => x.DefaultShippingAddress, sa =>
         {
             sa.Property(p => p.Street).HasColumnName("ShippingStreet");
@@ -22,7 +21,6 @@ internal class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             sa.Property(p => p.Country).HasColumnName("ShippingCountry");
         });
 
-        // Map Billing Address with specific column prefixes
         builder.OwnsOne(x => x.DefaultBillingAddress, ba =>
         {
             ba.Property(p => p.Street).HasColumnName("BillingStreet");

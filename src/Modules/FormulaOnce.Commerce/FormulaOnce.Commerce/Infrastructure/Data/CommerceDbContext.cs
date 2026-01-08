@@ -19,7 +19,6 @@ public class CommerceDbContext(DbContextOptions<CommerceDbContext> options) : Db
     {
         modelBuilder.HasDefaultSchema("Commerce");
 
-        // This automatically finds all IEntityTypeConfiguration classes in this assembly
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         base.OnModelCreating(modelBuilder);

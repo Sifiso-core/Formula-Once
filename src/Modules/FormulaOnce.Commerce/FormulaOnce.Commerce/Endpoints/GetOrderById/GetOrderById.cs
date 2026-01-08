@@ -23,7 +23,6 @@ internal class GetOrderById(IOrderRepository orderRepository) : EndpointWithoutR
             return;
         }
 
-        // Security: Ensure users can only see their own orders
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         if (order.UserId != userId)
         {

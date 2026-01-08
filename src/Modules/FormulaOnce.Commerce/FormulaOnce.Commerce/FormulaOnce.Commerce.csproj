@@ -17,7 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Endpoints\Cart\" />
       <Folder Include="Endpoints\Customer\" />
       <Folder Include="Endpoints\Order\" />
       <Folder Include="Endpoints\Product\" />

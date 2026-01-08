@@ -37,6 +37,13 @@ public class Cart
         return Result.Success();
     }
 
-    public void RemoveItem(Guid productId) => _items.RemoveAll(x => x.ProductId == productId);
+    public void RemoveItem(Guid productId)
+    {
+        if (_items.Any(x => x.ProductId == productId))
+        {
+            _items.RemoveAll(x => x.ProductId == productId);
+        }
+    }
+
     public void Clear() => _items.Clear();
 }
