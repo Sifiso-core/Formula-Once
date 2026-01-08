@@ -1,4 +1,4 @@
-# 🏎️ FormulaOnce — Modular Monolith for F1 (2026 Season)
+# 🏎️ FormulaOnce — Modular Monolith Project for F1 (2026 Season)
 
 **FormulaOnce** is a high-performance, backend-focused application built for the **Formula 1 – 2026 season**.  
 It is architected as a **Modular Monolith**, deliberately balancing the simplicity of a single deployment with the scalability and discipline typically associated with microservices.
