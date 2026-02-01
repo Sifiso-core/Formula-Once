@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json.Serialization;
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using FormulaOnce.Api.Middleware;
 using FormulaOnce.Commerce;
 using FormulaOnce.Events;
@@ -32,7 +33,7 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddProblemDetails();
 
-builder.Services.AddFastEndpoints();
+builder.Services.AddFastEndpoints().SwaggerDocument();
 
 builder.Services.AddFormulaOnceIdentity(builder.Configuration, logger);
 
@@ -67,6 +68,6 @@ app.UseFastEndpoints(options =>
 {
     options.Errors.UseProblemDetails();
     options.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
-});
+}).UseSwaggerGen();
 
 app.Run();
