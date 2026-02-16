@@ -35,7 +35,7 @@ public class RegisterEndpoint(UserManager<ApplicationUser> userManager)
             await Send.ErrorsAsync(cancellation: ct);
             return;
         }
-        
+
         await Send.OkAsync(cancellation: ct);
     }
 }

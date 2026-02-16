@@ -2,7 +2,7 @@
 @ConstructorId = <REPLACE_WITH_CONSTRUCTOR_ID>
 @DriverId = <REPLACE_WITH_DRIVER_ID>
 @Admintoken=<REPLACE_WITH_ADMIN_JWT_TOKEN>
-@Usertoken=<REPLACE_WITH_USER_JWT_TOKEN>
+@Usertoken= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJGb3JtdWxhT25jZVVJIiwiaXNzIjoiRm9ybXVsYU9uY2UiLCJleHAiOjE3NzA1NjM0ODUsImlhdCI6MTc2OTk1ODY4NSwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiJiMzE0NDRiMS0wMjBhLTRiN2UtMWI2My0wOGRlNjFhM2UyNDkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJleGFtcGxlQGdtYWlsLmNvbSIsIkZpcnN0TmFtZSI6ImV4YW1wbGVGaXJzdE5hbWUiLCJMYXN0TmFtZSI6ImV4YW1wbGVMYXN0TmFtZSIsIm5iZiI6MTc2OTk1ODY4NX0.d5L_u2QA5XGikRk_XWk2VFGK-OAmlp-ngaadYfbTLBc
 
 ### 1. Create a Constructor (Ferrari)
 POST {{BaseUrl}}/constructors
@@ -50,9 +50,8 @@ Authorization: Bearer {{Admintoken}}
 }
 
 ### 2. Get All Constructors
-# Verifies the repository's .Include() chain for nested tables.
 GET {{BaseUrl}}/constructors
-Authorization: Bearer {{Admintoken}}
+Authorization: Bearer {{Usertoken}}
 
 ### 3. Get Constructor By ID
 GET {{BaseUrl}}/constructors/{{ConstructorId}}

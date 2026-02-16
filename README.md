@@ -144,6 +144,12 @@ FormulaOnce is developed incrementally — starting as a strong modular monolith
 
 ---
 
+## API Documentation
+
+- OpenAPI Spec: /docs/Formula-Once-API-Spec.yaml
+- Static Documentation: /docs/Formula-Once-documentation.html
+- The OpenAPI specification is the contract for the API and can be imported into any OpenAPI-compatible tool.
+
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Requirements

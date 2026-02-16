@@ -40,7 +40,7 @@ public static class FormulaOnceCommerceExtensions
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<ICustomerService, CustomerService>();
 
-        logger.Information("::{module} module services registered", "Commerce");
+        logger.Information("::{Module} module services registered", "Commerce");
 
         return services;
     }

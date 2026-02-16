@@ -24,13 +24,16 @@ internal class Constructor
         Name = Guard.Against.NullOrEmpty(name);
         BaseLocation = Guard.Against.NullOrEmpty(baseLocation);
         EstablishedYear = Guard.Against.OutOfRange(year, nameof(year), 1900, DateTime.UtcNow.Year);
-
-        // For Value Objects/Owned Types, you can often just replace them
         Stats = stats;
     }
 
     public class Factory
     {
+        protected Factory()
+        {
+            //To prevent instantiation
+        }
+
         public static Constructor Create(string name, string baseLocation, int establishedYear, ConstructorStats stats,
             Guid? id = null!)
         {

@@ -13,7 +13,6 @@ internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : 
     {
         logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
 
-        // Create a standard Problem Details response
         var problemDetails = new ProblemDetails
         {
             Status = (int)HttpStatusCode.InternalServerError,

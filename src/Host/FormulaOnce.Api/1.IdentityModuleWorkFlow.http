@@ -2,21 +2,19 @@
 
 ###1 .Register User 
 #Normal User Signup without Admin Privileges
-POST {{BaseUrl}}
-Content-Type:
+POST {{baseUrl}}/register
+Content-Type:application/json
 
 {
-    "firstName": "exampleFirstName",
-    "lastName": "exampleLastName",
     "email": "example@gmail.com",
-    "password": "examplePassword123!"
+    "password": "examplePassword123!",
+    "firstName": "exampleFirstName",
+    "lastName": "exampleLastName"
 }
-
-
 
 ### 1. Login as the user to obtain JWT token
 # @name userLogin
-POST {{BaseUrl}}/login
+POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
@@ -27,7 +25,7 @@ Content-Type: application/json
 ### 1. Login as admin  user to obtain admin JWT token
 # @name adminLogin
 # Admin will be seeded via the  IdentityDataSeeder service during application startup
-POST {{BaseUrl}}/login
+POST {{baseUrl}}/login
 Content-Type: application/json
 
 {

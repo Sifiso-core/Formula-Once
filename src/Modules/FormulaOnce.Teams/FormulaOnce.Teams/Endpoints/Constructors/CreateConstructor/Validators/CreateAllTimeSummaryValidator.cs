@@ -14,7 +14,7 @@ public class CreateAllTimeSummaryValidator : Validator<UpdateAllTimeSummaryDto>
         RuleFor(x => x.PolePositions).GreaterThanOrEqualTo(0);
         RuleFor(x => x.WorldChampionships).GreaterThanOrEqualTo(0);
 
-        // Validation for the Ferrari finish format: "1 (x249)"
+        // "1 (x249)"
         RuleFor(x => x.HighestRaceFinish)
             .NotEmpty()
             .Matches(@"^\d+\s?(\(x\d+\))?$")

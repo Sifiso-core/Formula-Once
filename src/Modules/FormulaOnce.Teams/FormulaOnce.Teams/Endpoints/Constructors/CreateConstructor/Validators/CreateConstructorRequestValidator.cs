@@ -7,7 +7,6 @@ public class CreateConstructorRequestValidator : Validator<CreateConstructorRequ
 {
     public CreateConstructorRequestValidator()
     {
-        // Metadata Validation
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Constructor name is required.")
             .MaximumLength(100);
@@ -20,7 +19,7 @@ public class CreateConstructorRequestValidator : Validator<CreateConstructorRequ
             .InclusiveBetween(1900, DateTime.UtcNow.Year)
             .WithMessage($"Established year must be between 1900 and {DateTime.UtcNow.Year}.");
 
-        // Stats Validation
+
         RuleFor(x => x.Stats)
             .NotNull().WithMessage("Constructor statistics are required.");
 

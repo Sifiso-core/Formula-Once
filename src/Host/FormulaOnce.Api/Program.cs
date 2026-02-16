@@ -70,4 +70,4 @@ app.UseFastEndpoints(options =>
     options.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
 }).UseSwaggerGen();
 
-app.Run();
+await app.RunAsync();

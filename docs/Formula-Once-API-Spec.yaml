@@ -1,0 +1,682 @@
+openapi: 3.0.0
+info:
+  title: Formula-Once-API-Spec
+  version: 1.0.0
+paths:
+  /Identity/register:
+    post:
+      summary: Register User(Non-Admin)
+      operationId: Register User(Non-Admin)
+      description: ''
+      tags:
+        - Identity
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/register_user(non-admin)'
+  /Identity/login:
+    post:
+      summary: Login User (Admin)
+      operationId: Login User (Admin)
+      description: ''
+      tags:
+        - Identity
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/login_user_(admin)'
+  /teams/constructors:
+    post:
+      summary: Create Constructor
+      operationId: Create Constructor
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/create_constructor'
+    get:
+      summary: Get All Constructors
+      operationId: Get All Constructors
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+  /teams/constructors/%7B%7BConstructorId%7D%7D:
+    get:
+      summary: Get Constructor By Id
+      operationId: Get Constructor By Id
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+    put:
+      summary: Update Constructor Statistics
+      operationId: Update Constructor Statistics
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/update_constructor_statistics'
+    delete:
+      summary: Delete Constructor
+      operationId: Delete Constructor
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+  /teams/drivers:
+    post:
+      summary: Create Driver
+      operationId: Create Driver
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+    get:
+      summary: Get All Drivers
+      operationId: Get All Drivers
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+  /teams/drivers/%7B%7BDriverId%7D%7D:
+    get:
+      summary: Get Driver By Id
+      operationId: Get Driver By Id
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+    put:
+      summary: Update Driver
+      operationId: Update Driver
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+    delete:
+      summary: Delete Driver
+      operationId: Delete Driver
+      description: ''
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: ''
+  /events/circuits:
+    post:
+      summary: Create Circuit
+      operationId: Create Circuit
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/create_circuit'
+    get:
+      summary: Get All Circuits
+      operationId: Get All Circuits
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+  /events/circuits/%7B%7BCircuitId%7D%7D:
+    get:
+      summary: Get Circuit By Id
+      operationId: Get Circuit By Id
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+    delete:
+      summary: Delete Circuit
+      operationId: Delete Circuit
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+  /events/races:
+    post:
+      summary: Create Race (Sprint Weekent)
+      operationId: Create Race (Sprint Weekent)
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/create_race_(sprint_weekent)'
+    get:
+      summary: Get All Races
+      operationId: Get All Races
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+  /events/races/%7B%7BRaceId%7D%7D:
+    get:
+      summary: Get Race By Id
+      operationId: Get Race By Id
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+    delete:
+      summary: Delete Race
+      operationId: Delete Race
+      description: ''
+      tags:
+        - Events
+      responses:
+        '200':
+          description: ''
+  /commerce/cart:
+    post:
+      summary: Add Product To Cart
+      operationId: Add Product To Cart
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/add_product_to_cart'
+    get:
+      summary: Get User Cart
+      operationId: Get User Cart
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+  /commerce/cart/remove:
+    post:
+      summary: Remove Product From Cart
+      operationId: Remove Product From Cart
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/remove_product_from_cart'
+  /commerce/cart/checkout:
+    post:
+      summary: Checkout
+      operationId: Checkout
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+  /commerce/profile:
+    put:
+      summary: Update Customer Profile
+      operationId: Update Customer Profile
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/update_customer_profile'
+  /dashboard:
+    get:
+      summary: Get Order Dashboard For User
+      operationId: Get Order Dashboard For User
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+  /commerce/orders/%7B%7BOrderId%7D%7D:
+    get:
+      summary: Get Order For User
+      operationId: Get Order For User
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+  /commerce/products:
+    post:
+      summary: Create Product
+      operationId: Create Product
+      description: ''
+      tags:
+        - Commerce
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/create_product'
+servers:
+  - url: https://localhost:5001
+components:
+  schemas:
+    register_user(non-admin):
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+    log_in_user_(non-admin):
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    login_user_(admin):
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    create_constructor:
+      type: object
+      properties:
+        name:
+          type: string
+        baseLocation:
+          type: string
+        establishedYear:
+          type: number
+        stats:
+          type: object
+          properties:
+            allTimeSummary:
+              type: object
+              properties:
+                grandPrixEntered:
+                  type: number
+                teamPoints:
+                  type: number
+                highestRaceFinish:
+                  type: string
+                podiums:
+                  type: number
+                highestGridPosition:
+                  type: string
+                polePositions:
+                  type: number
+                worldChampionships:
+                  type: number
+            seasonStats:
+              type: object
+              properties:
+                seasonPosition:
+                  type: number
+                seasonPoints:
+                  type: number
+                grandPrixStats:
+                  type: object
+                  properties:
+                    grandPrixRaces:
+                      type: number
+                    grandPrixPoints:
+                      type: number
+                    grandPrixWins:
+                      type: number
+                    grandPrixPodiums:
+                      type: number
+                    grandPrixPoles:
+                      type: number
+                    grandPrixTop10s:
+                      type: number
+                sprintStats:
+                  type: object
+                  properties:
+                    sprintRaces:
+                      type: number
+                    sprintPoints:
+                      type: number
+                    sprintWins:
+                      type: number
+                    sprintPodiums:
+                      type: number
+                    sprintPoles:
+                      type: number
+                    sprintTop10s:
+                      type: number
+                dhlFastestLaps:
+                  type: number
+                dnfs:
+                  type: number
+    update_constructor_statistics:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        baseLocation:
+          type: string
+        establishedYear:
+          type: number
+        stats:
+          type: object
+          properties:
+            allTimeSummary:
+              type: object
+              properties:
+                grandPrixEntered:
+                  type: number
+                teamPoints:
+                  type: number
+                highestRaceFinish:
+                  type: string
+                podiums:
+                  type: number
+                highestGridPosition:
+                  type: string
+                polePositions:
+                  type: number
+                worldChampionships:
+                  type: number
+            seasonStats:
+              type: object
+              properties:
+                seasonPosition:
+                  type: number
+                seasonPoints:
+                  type: number
+                grandPrixStats:
+                  type: object
+                  properties:
+                    grandPrixRaces:
+                      type: number
+                    grandPrixPoints:
+                      type: number
+                    grandPrixWins:
+                      type: number
+                    grandPrixPodiums:
+                      type: number
+                    grandPrixPoles:
+                      type: number
+                    grandPrixTop10s:
+                      type: number
+                sprintStats:
+                  type: object
+                  properties:
+                    sprintRaces:
+                      type: number
+                    sprintPoints:
+                      type: number
+                    sprintWins:
+                      type: number
+                    sprintPodiums:
+                      type: number
+                    sprintPoles:
+                      type: number
+                    sprintTop10s:
+                      type: number
+                dhlFastestLaps:
+                  type: number
+                dnfs:
+                  type: number
+    create_circuit:
+      type: object
+      properties:
+        name:
+          type: string
+        lengthKm:
+          type: number
+        location:
+          type: object
+          properties:
+            country:
+              type: string
+            city:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+        landmarks:
+          type: array
+          items:
+            type: string
+          properties:
+            '0':
+              type: object
+              properties:
+                label:
+                  type: string
+                type:
+                  type: string
+                nearTurn:
+                  type: number
+            '1':
+              type: object
+              properties:
+                label:
+                  type: string
+                type:
+                  type: string
+                nearTurn:
+                  type: number
+    create_race:
+      type: object
+      properties:
+        title:
+          type: string
+        season:
+          type: number
+        round:
+          type: number
+        circuitId:
+          type: string
+        numberOfLaps:
+          type: number
+        mainRaceStartTime:
+          type: string
+        isSprintWeekend:
+          type: boolean
+    create_race_(sprint_weekent):
+      type: object
+      properties:
+        title:
+          type: string
+        season:
+          type: number
+        round:
+          type: number
+        circuitId:
+          type: string
+        numberOfLaps:
+          type: number
+        mainRaceStartTime:
+          type: string
+        isSprintWeekend:
+          type: boolean
+    add_product_to_cart:
+      type: object
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: number
+    remove_product_from_cart:
+      type: object
+      properties:
+        productId:
+          type: string
+    update_customer_profile:
+      type: object
+      properties:
+        shippingAddress:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            province:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        billingAddress:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            province:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+    create_product:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        currency:
+          type: string
+        stock:
+          type: number
+        type:
+          type: string
+  requestBodies:
+    register_user(non-admin):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/register_user(non-admin)'
+      description: ''
+      required: true
+    log_in_user_(non-admin):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/log_in_user_(non-admin)'
+      description: ''
+      required: true
+    login_user_(admin):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/login_user_(admin)'
+      description: ''
+      required: true
+    create_constructor:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/create_constructor'
+      description: ''
+      required: true
+    update_constructor_statistics:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/update_constructor_statistics'
+      description: ''
+      required: true
+    create_circuit:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/create_circuit'
+      description: ''
+      required: true
+    create_race:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/create_race'
+      description: ''
+      required: true
+    create_race_(sprint_weekent):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/create_race_(sprint_weekent)'
+      description: ''
+      required: true
+    add_product_to_cart:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/add_product_to_cart'
+      description: ''
+      required: true
+    remove_product_from_cart:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/remove_product_from_cart'
+      description: ''
+      required: true
+    update_customer_profile:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/update_customer_profile'
+      description: ''
+      required: true
+    create_product:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/create_product'
+      description: ''
+      required: true
+  securitySchemes: {}
