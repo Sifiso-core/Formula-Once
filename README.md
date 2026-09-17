@@ -7,6 +7,10 @@ This project is designed as a **portfolio-grade system** that demonstrates real-
 
 ---
 
+# Architecture Diagram
+<img width="1407" height="948" alt="image" src="https://github.com/user-attachments/assets/16bd96b3-80a0-484e-a045-101522603021" />
+
+
 ## 🏛️ Architecture & Design Philosophy
 
 FormulaOnce follows **Clean Architecture** using folders instead of class libraries, folders are enforced by unit tests using ArchUnitNet to enforce architecture rules and FormulaOnce uses **Domain-Driven Design (DDD)** to keep business rules isolated, explicit, and testable.
